@@ -112,13 +112,11 @@ def cond():
 
 def true_func():
     "*** YOUR CODE HERE ***"
-    print(42)
-    print(47)
+
 
 def false_func():
     "*** YOUR CODE HERE ***"
-    print(42)
-    print(47)
+
 
 def hailstone(x):
     """Print the hailstone sequence starting at x and return its
