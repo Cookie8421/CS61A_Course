@@ -31,6 +31,11 @@ def product(n, term):
     162
     """
     "*** YOUR CODE HERE ***"
+    result = 1
+    while n > 1:
+        result *= term(n)
+        n -= 1
+    return result
 
 
 def accumulate(combiner, base, n, term):
@@ -56,6 +61,12 @@ def accumulate(combiner, base, n, term):
     16
     """
     "*** YOUR CODE HERE ***"
+    result = base
+    while n > 0:
+        result = combiner(result, term(n))
+        n -= 1
+    return result
+
 
 def summation_using_accumulate(n, term):
     """Returns the sum of term(1) + ... + term(n). The implementation
@@ -72,6 +83,11 @@ def summation_using_accumulate(n, term):
     True
     """
     "*** YOUR CODE HERE ***"
+    result = 0
+    while n > 0:
+        result = accumulate(term, 0, n, identity)
+        n -= 1
+    return result
 
 def product_using_accumulate(n, term):
     """An implementation of product using accumulate.
@@ -87,7 +103,11 @@ def product_using_accumulate(n, term):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    result = None
+    while n > 0:
+        result = accumulate(mul, 0, n, term)
+        n -= 1
+    return result
 
 def compose1(func1, func2):
     """Return a function f, such that f(x) = func1(func2(x))."""
@@ -110,6 +130,14 @@ def make_repeater(func, n):
     5
     """
     "*** YOUR CODE HERE ***"
+    while n > 1:
+        result = compose1(func, func)
+        n -= 2
+    if n == 1:
+        result = func(result)
+    if n == 0:
+        result = identity
+    return result
 
 
 def zero(f):
