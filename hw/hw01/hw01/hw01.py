@@ -57,9 +57,10 @@ def largest_factor(x):
     """
     "*** YOUR CODE HERE ***"
     i = 2
-    while i < x/2:
+    while i <= x/2:
         if x % i == 0:
             return x / i
+        i += 1
     return 1
 
 
@@ -108,15 +109,17 @@ def with_if_function():
 
 def cond():
     "*** YOUR CODE HERE ***"
-
+    return true
 
 def true_func():
     "*** YOUR CODE HERE ***"
-
+    print(42)
+    return None
 
 def false_func():
     "*** YOUR CODE HERE ***"
-
+    print(47)
+    return None
 
 def hailstone(x):
     """Print the hailstone sequence starting at x and return its
