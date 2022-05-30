@@ -172,10 +172,12 @@ def hailstone(x):
     "*** YOUR CODE HERE ***"
     count = 0
     while x != 1:
+        print(int(x))
         if x % 2 == 0:
             x /= 2
         else:
             x = x * 3 + 1
         count += 1
-
+    print(int(x))
+    count += 1
     return count
