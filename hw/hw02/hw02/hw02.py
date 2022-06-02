@@ -32,7 +32,7 @@ def product(n, term):
     """
     "*** YOUR CODE HERE ***"
     result = 1
-    while n > 1:
+    while n >= 1:
         result *= term(n)
         n -= 1
     return result
@@ -61,10 +61,13 @@ def accumulate(combiner, base, n, term):
     16
     """
     "*** YOUR CODE HERE ***"
+    tmp = 1
     result = base
-    while n > 0:
-        result = combiner(result, term(n))
-        n -= 1
+    if n == 0:
+        return base
+    while tmp <= n:
+        result = combiner(result, term(tmp))
+        tmp += 1
     return result
 
 
@@ -83,10 +86,7 @@ def summation_using_accumulate(n, term):
     True
     """
     "*** YOUR CODE HERE ***"
-    result = 0
-    while n > 0:
-        result = accumulate(term, 0, n, identity)
-        n -= 1
+    result = accumulate(add, 0, n, term)
     return result
 
 def product_using_accumulate(n, term):
@@ -103,10 +103,7 @@ def product_using_accumulate(n, term):
     True
     """
     "*** YOUR CODE HERE ***"
-    result = None
-    while n > 0:
-        result = accumulate(mul, 0, n, term)
-        n -= 1
+    result = accumulate(mul, 1, n, term)
     return result
 
 def compose1(func1, func2):
@@ -130,13 +127,12 @@ def make_repeater(func, n):
     5
     """
     "*** YOUR CODE HERE ***"
-    while n > 1:
-        result = compose1(func, func)
-        n -= 2
-    if n == 1:
-        result = func(result)
+    result = func
     if n == 0:
-        result = identity
+        return identity
+    while n > 1:
+        result = compose1(func, result)
+        n -= 1
     return result
 
 
@@ -149,12 +145,12 @@ def successor(n):
 def one(f):
     """Church numeral 1: same as successor(zero)"""
     "*** YOUR CODE HERE ***"
+    return lambda x: f(x)
 
 def two(f):
     """Church numeral 2: same as successor(successor(zero))"""
     "*** YOUR CODE HERE ***"
-
-three = successor(two)
+    return lambda x: f(f(x))
 
 def church_to_int(n):
     """Convert the Church numeral n to a Python integer.
@@ -170,6 +166,7 @@ def church_to_int(n):
     """
     "*** YOUR CODE HERE ***"
 
+
 def add_church(m, n):
     """Return the Church numeral for m + n, for Church numerals m and n.
 
@@ -177,6 +174,7 @@ def add_church(m, n):
     5
     """
     "*** YOUR CODE HERE ***"
+
 
 def mul_church(m, n):
     """Return the Church numeral for m * n, for Church numerals m and n.

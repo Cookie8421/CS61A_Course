@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
 from hw.hw01.hw01.hw01 import a_plus_abs_b
 from hw.hw01.hw01.hw01 import two_of_three
 from hw.hw01.hw01.hw01 import largest_factor
