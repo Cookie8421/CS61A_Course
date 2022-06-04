@@ -10,6 +10,15 @@ from hw02 import accumulate
 from hw02 import summation_using_accumulate
 from hw02 import product_using_accumulate
 from hw02 import make_repeater
+from hw02 import zero
+from hw02 import successor
+from hw02 import one
+from hw02 import two
+from hw02 import church_to_int
+from hw02 import add_church
+from hw02 import mul_church
+from hw02 import pow_church
+
 
 print(product(3, identity))
 
@@ -54,3 +63,9 @@ print(make_repeater(square, 2)(5))
 print(make_repeater(square, 4)(5))
 
 print(make_repeater(square, 0)(5))
+
+print(church_to_int(zero))
+
+print(church_to_int(one))
+
+print(church_to_int(two))
