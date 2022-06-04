@@ -1,15 +1,15 @@
 #!/usr/bin/python
 # -*- coding: UTF-8 -*-
 from operator import add, mul, sub
-from hw.hw02.hw02.hw02 import product
-from hw.hw02.hw02.hw02 import square
-from hw.hw02.hw02.hw02 import identity
-from hw.hw02.hw02.hw02 import triple
-from hw.hw02.hw02.hw02 import increment
-from hw.hw02.hw02.hw02 import accumulate
-from hw.hw02.hw02.hw02 import summation_using_accumulate
-from hw.hw02.hw02.hw02 import product_using_accumulate
-from hw.hw02.hw02.hw02 import make_repeater
+from hw02 import product
+from hw02 import square
+from hw02 import identity
+from hw02 import triple
+from hw02 import increment
+from hw02 import accumulate
+from hw02 import summation_using_accumulate
+from hw02 import product_using_accumulate
+from hw02 import make_repeater
 
 print(product(3, identity))
 
