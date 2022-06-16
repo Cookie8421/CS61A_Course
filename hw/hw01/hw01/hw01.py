@@ -14,9 +14,10 @@ def a_plus_abs_b(a, b):
     ['return h(a, b)']
     """
     if b >= 0:
-        return a + b
+        h = add
     else:
-        return a - b
+        h = sub
+    return h(a, b)
 
 
 def two_of_three(x, y, z):
@@ -37,42 +38,7 @@ def two_of_three(x, y, z):
     >>> [type(x).__name__ for x in ast.parse(inspect.getsource(two_of_three)).body[0].body]
     ['Expr', 'Return']
     """
-    result = 0
-    count = 0
-    pos = 0
-    minNum = min(x, y, z)
-    if x == minNum:
-        if count < 2:
-            result += x * x
-            count += 1
-            pos = 1
-    if y == min(x, y, z):
-        if count < 2:
-            result += y * y
-            count += 1
-            pos = 2
-    if z == min(x, y, z):
-        if count < 2:
-            result += z * z
-            count += 1
-            pos = 3
-    if count == 1:
-        if pos == 1:
-            if y <= z:
-                result += y * y
-            else:
-                result += z * z
-        elif pos == 2:
-            if x <= z:
-                result += x * x
-            else:
-                result += z * z
-        elif pos == 3:
-            if x <= y:
-                result += x * x
-            else:
-                result += y * y
-    return result
+    return min(x*x+y*y, y*y+z*z, z*z+x*x)
 
 
 def largest_factor(x):
@@ -139,7 +105,7 @@ def with_if_function():
 
 def cond():
     "*** YOUR CODE HERE ***"
-    return True
+    return False
 
 
 def true_func():

@@ -22,15 +22,15 @@ def roll_dice(num_rolls, dice=six_sided):
     assert num_rolls > 0, 'Must roll at least once.'
     # BEGIN PROBLEM 1
     "*** YOUR CODE HERE ***"
-    count = 0
     result = 0
-    while count < num_rolls:
+    while num_rolls:
         current = dice
         if current == 1:
+            # Pig Out!
             return 1
         else:
             result += current
-        count += 1
+        num_rolls -= 1
     return result
     # END PROBLEM 1
 
@@ -69,7 +69,7 @@ def take_turn(num_rolls, opponent_score, dice=six_sided):
     while count < num_rolls:
         tmp = dice
         if tmp == 1:
-            return 0
+            return 1
         result += tmp
         count += 1
     return result
@@ -82,9 +82,9 @@ def is_swap(player_score, opponent_score):
     """
     # BEGIN PROBLEM 4
     "*** YOUR CODE HERE ***"
-    if (player_score % 10) - (opponent_score % 10) == (opponent_score / 10):
+    if abs(player_score % 10) - abs(opponent_score % 10) == opponent_score / 10:
         return 0
-    else :
+    else:
         return None
     # END PROBLEM 4
 
@@ -126,10 +126,28 @@ def play(strategy0, strategy1, score0=0, score1=0, dice=six_sided,
     who = 0  # Who is about to take a turn, 0 (first) or 1 (second)
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    pastdice0 = None
+    pastdice1 = None
+
+    while score0 < goal and score1 < goal:
+        dice0 = strategy0
+        dice1 = strategy1
+        score0 = take_turn(strategy0, score1, dice)
+        both(say_scores, announce_lead_changes())(score0, score1)
+        score1 = take_turn(strategy1, score0, dice)
+        both(say_scores, announce_lead_changes())(score0, score1)
+        if feral_hogs:
+            if pastdice0 != None and pastdice0 == dice0 - 2:
+                score0 += 3
+            if pastdice1 != None and pastdice1 == dice1 - 2:
+                score1 += 3
+            pastdice0 = dice0
+            pastdice1 = dice1
     # END PROBLEM 5
     # (note that the indentation for the problem 6 prompt (***YOUR CODE HERE***) might be misleading)
     # BEGIN PROBLEM 6
     "*** YOUR CODE HERE ***"
+
     # END PROBLEM 6
     return score0, score1
 
@@ -216,6 +234,9 @@ def announce_highest(who, last_score=0, running_high=0):
     assert who == 0 or who == 1, 'The who argument should indicate a player.'
     # BEGIN PROBLEM 7
     "*** YOUR CODE HERE ***"
+    def say(score0, score1):
+        return 0
+    return say
     # END PROBLEM 7
 
 
