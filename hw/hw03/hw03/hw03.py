@@ -21,7 +21,7 @@ def composer(func=lambda x: x):
     """
     def func_adder(g):
         "*** YOUR CODE HERE ***"
-        return func_adder(func_adder(g))
+        return composer(lambda x: func(g(x)))
     return func, func_adder
 
 
@@ -44,6 +44,11 @@ def g(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n <= 3:
+        return n
+    else:
+        return g(n - 1) + 2 * g(n - 2) + 3* g(n - 3)
+
 
 def g_iter(n):
     """Return the value of G(n), computed iteratively.
