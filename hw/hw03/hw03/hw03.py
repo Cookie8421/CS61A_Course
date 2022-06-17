@@ -69,7 +69,13 @@ def g_iter(n):
     True
     """
     "*** YOUR CODE HERE ***"
-
+    if n <= 3:
+        return n
+    else:
+        g_1, g_2, g_3, i = 1, 2, 3, 3
+        while i < n:
+            g_1, g_2, g_3, i = g_2, g_3, 3 * g_1 + 2 * g_2 + g_3, i + 1
+        return g_3
 
 def missing_digits(n):
     """Given a number a that is in sorted, increasing order,
