@@ -105,7 +105,27 @@ def missing_digits(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    if n / 10 > 1:
+        result = missing_digits(n // 10)
+        current = n % 10
+        last = (n % 100) // 10
+        if current == last:
+            return result
+        return current - last - 1 + result
+    else:
+        return 0
 
+    """
+    Other version:
+    
+    all_but_last, last = n // 10, n % 10
+    if all_but_last == 0:
+        return 0
+    last_last = all_but_last % 10
+    miss = 0 if last - last_last <= 1 else last - 1 - last_last
+    return missing_digits(all_but_last) + miss
+
+    """
 
 def count_change(total):
     """Return the number of ways to make change for total.

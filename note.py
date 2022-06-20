@@ -138,6 +138,17 @@ def mario_at(octave):
     return mario(c, e, g, low_g)
 
 play(both(mario_at(1), mario_at(1/2)))
+
+
+a, b, c = 1, 2, 3
+
+a, b, c = b, c, b+1
+
+print(a, b, c)
+
+
 """
 
+print(1248 % 10)
+print((1248 % 100) // 10)
 
