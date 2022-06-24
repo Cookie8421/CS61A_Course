@@ -107,6 +107,10 @@ def balanced(m):
     True
     """
     "*** YOUR CODE HERE ***"
+    left = m[0]
+    right = m[1]
+
+
 
 def totals_tree(m):
     """Return a tree representing the mobile with its total weight at the root.
