@@ -1029,7 +1029,27 @@ def dict_demos():
     {[1]: 2}
     {1: [2]}
 
-
+Debugging:
+1.Assertions: Use
+    assert isinstance(x, int)
+2.Testing: Doctests
+    ○To run: python3 -m doctest file.py
+3.Print Debugging
+    ○print(“Debug: x=”, x)
+4.Interactive Debugging: REPL
+    To use, run
+    ○ python3 -i file.py
+    ○ then run whatever python commands you want
+     OK integration:
+    ○ python3 ok -q whatever -i
+    ○ Starts out already having run code for that question
+5.PythonTutor
+    You can also step through your code line
+    by line on PythonTutor:
+    ○ Just copy your code into tutor.cs61a.org
+     Ok integration:
+    ○ python ok -q whatever --trace
+6.Error Message Patterns
 
 
 
