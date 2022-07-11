@@ -105,6 +105,9 @@ def missing_digits(n):
     True
     """
     "*** YOUR CODE HERE ***"
+    next = n / 10 % 10
+    current = n % 10
+
 
 
 def count_change(total):
