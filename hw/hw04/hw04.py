@@ -107,8 +107,10 @@ def balanced(m):
     True
     """
     "*** YOUR CODE HERE ***"
-    left = m[0]
-    right = m[1]
+    if is_mobile(m):
+        return total_weight(end(left(m)))*length(left(m)) == total_weight(end(right(m)))*length(right(m)) and balanced(end(left(m))) and balanced(end(right(m)))
+    else:
+        return True
 
 
 
@@ -142,6 +144,21 @@ def totals_tree(m):
     True
     """
     "*** YOUR CODE HERE ***"
+    """branch = []
+    if is_mobile(end(left(m))):
+        branch + totals_tree(end(left(m)))
+    elif is_planet(end(left(m))):
+        branch + tree(total_weight(end(left(m))), [])
+    if is_mobile(end(right(m))):
+        branch + totals_tree(end(right(m)))
+    elif is_planet(end(right(m))):
+        branch + tree(total_weight(end(right(m))), [])
+    return tree(total_weight(m), branch)"""
+    if is_planet(m):
+        return tree(size(m))
+    else:
+        l, r = end(left(m)), end(right(m))
+        return tree(total_weight(m), [totals_tree(l), totals_tree(r)])
 
 
 def replace_leaf(t, find_value, replace_value):
