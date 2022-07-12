@@ -129,7 +129,15 @@ def count_change(total):
     True
     """
     "*** YOUR CODE HERE ***"
+    def helper(n, m):
+        if n == 0:
+            return 1
+        elif n < (1 << m):
+            return 0
+        else:
+            return helper(n, m + 1) + helper(n - (1 << m), m)
 
+    return helper(total, 0)
 
 def print_move(origin, destination):
     """Print instructions to move a disk."""
