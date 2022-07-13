@@ -144,16 +144,7 @@ def totals_tree(m):
     True
     """
     "*** YOUR CODE HERE ***"
-    """branch = []
-    if is_mobile(end(left(m))):
-        branch + totals_tree(end(left(m)))
-    elif is_planet(end(left(m))):
-        branch + tree(total_weight(end(left(m))), [])
-    if is_mobile(end(right(m))):
-        branch + totals_tree(end(right(m)))
-    elif is_planet(end(right(m))):
-        branch + tree(total_weight(end(right(m))), [])
-    return tree(total_weight(m), branch)"""
+
     if is_planet(m):
         return tree(size(m))
     else:
@@ -192,6 +183,23 @@ def replace_leaf(t, find_value, replace_value):
     """
     "*** YOUR CODE HERE ***"
 
+    """tmp = copy_tree(t)
+    if is_leaf(tmp):
+        if label(tmp) == find_value:
+            tmp[0] = replace_value
+        return tmp
+    else:
+        newBranch = []
+        for branch in branches(tmp):
+            newBranch.append(replace_leaf(branch, find_value, replace_value))
+        return [tmp[0]] + list(newBranch)"""
+
+    """more effective way:"""
+    if is_leaf(t):
+        return tree(replace_value if find_value == label(t) else label(t))
+    else:
+        return tree(label(t), [replace_leaf(b, find_value, replace_value) for b in branches(t)])
+
 
 def preorder(t):
     """Return a list of the entries in this tree in the order that they
@@ -204,6 +212,17 @@ def preorder(t):
     [2, 4, 6]
     """
     "*** YOUR CODE HERE ***"
+
+    """tmp = []
+    def recur(t, tmp):
+        tmp.append(label(t))
+        for branch in branches(t):
+            recur(branch, tmp)
+        return tmp
+    return recur(t, tmp)"""
+
+    """more effective way:"""
+    return [label(t)] + sum([preorder(b) for b in branches(t)],[])
 
 
 def has_path(t, phrase):
@@ -237,6 +256,20 @@ def has_path(t, phrase):
     assert len(phrase) > 0, 'no path for empty phrases.'
     "*** YOUR CODE HERE ***"
 
+    """if phrase[0] == label(t):
+        if len(phrase) == 1:
+            return True
+        for branch in branches(t):
+            if has_path(branch, phrase[1:]):
+                return True
+        return False
+    else:
+        return False"""
+
+    """more effective way:"""
+    if len(phrase) == 1:
+        return phrase[0] == label(t)
+    return label(t) == phrase[0] and any([has_path(b, phrase[1:]) for b in branches(t)])
 
 def interval(a, b):
     """Construct an interval from a to b."""
@@ -245,10 +278,13 @@ def interval(a, b):
 def lower_bound(x):
     """Return the lower bound of interval x."""
     "*** YOUR CODE HERE ***"
+    return x[0]
 
 def upper_bound(x):
     """Return the upper bound of interval x."""
     "*** YOUR CODE HERE ***"
+    return x[1]
+
 def str_interval(x):
     """Return a string representation of interval x.
     """

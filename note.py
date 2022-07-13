@@ -932,8 +932,8 @@ def divisors(n):
     
     return [1] + [x for x in range(2, n) if n % x == 0]
 
-
-
+    >>> print([1,2,3] + sum([[4,5,6]],[]))
+    [1, 2, 3, 4, 5, 6]
 
 
 # Rational arithmetic
@@ -1118,6 +1118,7 @@ Python对闭包的支持一直不是很完美，在 Python2 中，闭包函数�
 
 """
 
-print(['planet', 7])
+a = "abc"
+print(a[1:])
 
 
