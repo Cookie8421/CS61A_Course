@@ -1118,7 +1118,9 @@ Python对闭包的支持一直不是很完美，在 Python2 中，闭包函数�
 
 """
 
-a = "abc"
-print(a[1:])
-
-
+def f(s = []):
+    s.append(3)
+    return len(s)
+print(f())
+print(f())
+print(f())
