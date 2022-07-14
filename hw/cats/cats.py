@@ -40,6 +40,13 @@ def about(topic):
     assert all([lower(x) == x for x in topic]), 'topics should be lowercase.'
     # BEGIN PROBLEM 2
     "*** YOUR CODE HERE ***"
+    def select(paragraph):
+        words = set(split(lower(remove_punctuation(paragraph))))
+        for x in topic:
+            if x in words:
+                return True
+        return False
+    return select
     # END PROBLEM 2
 
 
@@ -64,6 +71,26 @@ def accuracy(typed, reference):
     reference_words = split(reference)
     # BEGIN PROBLEM 3
     "*** YOUR CODE HERE ***"
+    """ correct = 0.0
+        typeLength = len(typed_words)
+        refLength = len(reference_words)
+        if typeLength == 0:
+            return 0.0
+        for index in range(refLength):
+            if index >= min(typeLength, refLength):
+                break
+            if typed_words[index] == reference_words[index]:
+                correct += 1
+        return 100 * correct / typeLength"""
+
+    """more efficient way"""
+    total = len(typed_words)
+    correct = 0
+    if total == 0:
+        return 0.0
+    for t, r in zip(typed_words, reference_words):
+        correct += (t == r)
+    return 100 * correct / total
     # END PROBLEM 3
 
 

@@ -11,14 +11,12 @@ test = {
           >>> choose(ps, s, 0)
           'short'
           >>> choose(ps, s, 1)
-          91ddcb514fd8cd4a80c84840972e0693
-          # locked
+          'tiny'
           >>> choose(ps, s, 2)
-          ff4fea29a1875949726ebf30fc8c6cba
-          # locked
+          ''
           """,
           'hidden': False,
-          'locked': True
+          'locked': False
         }
       ],
       'scored': True,

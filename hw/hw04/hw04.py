@@ -194,7 +194,7 @@ def replace_leaf(t, find_value, replace_value):
             newBranch.append(replace_leaf(branch, find_value, replace_value))
         return [tmp[0]] + list(newBranch)"""
 
-    """more effective way:"""
+    """more efficient way:"""
     if is_leaf(t):
         return tree(replace_value if find_value == label(t) else label(t))
     else:
@@ -221,7 +221,7 @@ def preorder(t):
         return tmp
     return recur(t, tmp)"""
 
-    """more effective way:"""
+    """more efficient way:"""
     return [label(t)] + sum([preorder(b) for b in branches(t)],[])
 
 
@@ -266,7 +266,7 @@ def has_path(t, phrase):
     else:
         return False"""
 
-    """more effective way:"""
+    """more efficient way:"""
     if len(phrase) == 1:
         return phrase[0] == label(t)
     return label(t) == phrase[0] and any([has_path(b, phrase[1:]) for b in branches(t)])

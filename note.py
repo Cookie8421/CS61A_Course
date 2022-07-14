@@ -1124,3 +1124,7 @@ def f(s = []):
 print(f())
 print(f())
 print(f())
+
+
+for t, r in zip("a b c d", "a d"):
+    print(t, r)
