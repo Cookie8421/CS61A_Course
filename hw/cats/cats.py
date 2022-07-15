@@ -110,6 +110,27 @@ def autocorrect(user_word, valid_words, diff_function, limit):
     """
     # BEGIN PROBLEM 5
     "*** YOUR CODE HERE ***"
+    """diff_res = user_word
+    closerDiff = limit+1
+    for word in valid_words:
+        if user_word == word:
+            return user_word
+        else:
+            diff = diff_function(user_word, word, limit)
+            if limit - diff >= 0 and diff < closerDiff:
+                diff_res = word
+                closerDiff = diff
+    return diff_res"""
+
+    """more efficient way"""
+    if user_word in valid_words:
+        return user_word
+    similar_word = min(valid_words, key=lambda w: diff_function(user_word, w, limit))
+    if diff_function(user_word, similar_word, limit) > limit:
+        return user_word
+    else:
+        return similar_word
+
     # END PROBLEM 5
 
 
@@ -119,7 +140,16 @@ def shifty_shifts(start, goal, limit):
     their lengths.
     """
     # BEGIN PROBLEM 6
-    assert False, 'Remove this line'
+    if len(start) == 0:
+        return len(goal)
+    if len(goal) == 0:
+        return len(start)
+    if start[0] != goal[0]:
+        if limit == 0:
+            return 1
+        return 1 + shifty_shifts(start[1:], goal[1:], limit - 1)
+    else:
+        return shifty_shifts(start[1:], goal[1:], limit)
     # END PROBLEM 6
 
 
