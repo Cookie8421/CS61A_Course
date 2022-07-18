@@ -1128,3 +1128,6 @@ print(f())
 
 for t, r in zip("a b c d", "a d"):
     print(t, r)
+
+
+print(3/5)

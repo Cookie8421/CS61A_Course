@@ -155,24 +155,29 @@ def shifty_shifts(start, goal, limit):
 
 def meowstake_matches(start, goal, limit):
     """A diff function that computes the edit distance from START to GOAL."""
-    assert False, 'Remove this line'
 
-    if ______________: # Fill in the condition
+    if limit < 0: # Fill in the condition
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return 0
         # END
 
-    elif ___________: # Feel free to remove or add additional cases
+    elif len(start) == 0 or len(goal) == 0: # Feel free to remove or add additional cases
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return len(start) + len(goal)
         # END
+
+    elif start[0] == goal[0]:
+        return meowstake_matches(start[1:], goal[1:], limit)
 
     else:
-        add_diff = ...  # Fill in these lines
-        remove_diff = ... 
-        substitute_diff = ... 
+        add_diff = meowstake_matches(start, goal[1:], limit - 1)
+        remove_diff = meowstake_matches(start[1:], goal, limit - 1)
+        substitute_diff = meowstake_matches(start[1:], goal[1:], limit - 1)
         # BEGIN
         "*** YOUR CODE HERE ***"
+        return 1 + min(min(add_diff, remove_diff), substitute_diff)
         # END
 
 
@@ -190,6 +195,15 @@ def report_progress(typed, prompt, id, send):
     """Send a report of your id and progress so far to the multiplayer server."""
     # BEGIN PROBLEM 8
     "*** YOUR CODE HERE ***"
+    correct_sofar = 0
+    for t, p in zip(typed, prompt):
+        if t == p:
+            correct_sofar += 1
+        else:
+            break
+    progress = correct_sofar / len(prompt)
+    send({'id': id, 'progress': progress})
+    return progress
     # END PROBLEM 8
 
 
@@ -216,6 +230,13 @@ def time_per_word(times_per_player, words):
     """
     # BEGIN PROBLEM 9
     "*** YOUR CODE HERE ***"
+    tpp = []
+    for player in times_per_player:
+        time = []
+        for i in range(len(player) - 1):
+            time.append(player[i + 1] - player[i])
+        tpp.append(time)
+    return game(words, tpp)
     # END PROBLEM 9
 
 
@@ -231,6 +252,15 @@ def fastest_words(game):
     words = range(len(all_words(game)))    # An index for each word
     # BEGIN PROBLEM 10
     "*** YOUR CODE HERE ***"
+    words = all_words(game)
+    times = all_times(game)
+    tot_player = len(times)
+    fastest = [[] for i in range(tot_player)]
+    for i, word in enumerate(words):
+        word_times = [times[player][i] for player in range(tot_player)]
+        idx = min(range(tot_player), key=lambda x: word_times[x])
+        fastest[idx].append(word)
+    return fastest
     # END PROBLEM 10
 
 
