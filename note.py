@@ -21,6 +21,12 @@
 """
 week 1:
 
+a = 1
+b = 2
+b, a = a+b, b
+print(a)  #2
+print(b) #3
+
 # Importing and arithmetic with call expressions
 from operator import add, mul
 add(1, 2)
