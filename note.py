@@ -1090,6 +1090,7 @@ print(withdraw(50))
 print(withdraw(20))
 
 
+
 def make_adder(n):
     def add(x):
         nonlocal n
@@ -1103,13 +1104,12 @@ print(add(3))
 
 
 
-
-
-
 nonlocal
 nonlocal是 Python3 新增的作用域关键词。
 Python对闭包的支持一直不是很完美，在 Python2 中，闭包函数可以读取到父级函数的变量，但是无法修改变量的值，
 为此，我们经常要把变量声明为global全局变量，这样就打破了闭包的性质。
+
+
 
 def f(x):
     x = 4
@@ -1125,6 +1125,8 @@ b = a(2)
 print(b(3) + b(4))
 为了解决这个问题，Python3 引入了nonlocal，如上例代码，我们使用声明了nonlocal n之后，就可以正常操作。
 
+
+
 def oski(bear):
     def cal(berk):
         nonlocal bear
@@ -1135,6 +1137,7 @@ def oski(bear):
     return cal(2)
 print(oski(abs))
 声明为nonlocal的变量如果变更，环境内的变量就改变了，会影响下次的调用
+
 
 
 def make_withdraw_list(balance):
@@ -1151,7 +1154,8 @@ print(withdraw(25))
 print(withdraw(25))
 print(withdraw(25))
 Only objects of mutable types can change: lists & dictionaries
-"""
+
+
 
 def f(s = []):
     s.append(3)
@@ -1160,8 +1164,24 @@ print(f())
 print(f())
 print(f())
 
-
 for t, r in zip("a b c d", "a d"):
     print(t, r)
+
+
+
+Higher Order Functions (Self Reference)
+def print_delayed(x):
+    def delay_print(y):
+        print(x)
+        return print_delayed(y)
+    return delay_print
+
+f = print_delayed(1)
+f = f(2)
+f = f(3)
+
+
+
+"""
 
 
