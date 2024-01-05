@@ -1196,3 +1196,4 @@ g("first")("second")("third")
 
 """
 
+print('berr' == 'berry')
