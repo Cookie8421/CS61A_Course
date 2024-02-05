@@ -1194,6 +1194,8 @@ g = print_n(1)
 
 g("first")("second")("third")
 
+print('berr' == 'berry')
+
+
 """
 
-print('berr' == 'berry')
