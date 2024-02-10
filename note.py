@@ -1196,8 +1196,18 @@ g("first")("second")("third")
 
 print('berr' == 'berry')
 
+s = [1,2,3]
+print(s[::-1])
+
+def plus_minus(x):
+    yield x
+    yield -x
+t = plus_minus(3)
+print(next(t))
+print(next(t))
+print(t)
+
+A yield from statement yields all values from an iterator or iterable
 
 """
 
-s = [1,2,3]
-print(s[::-1])
