@@ -31,19 +31,19 @@ def subsaltshaker(disk):
     >>> subsaltshaker(20) # no saltshakers in this number
     False
     """
-    current_digit = ______
-    count = ______
-    while ______:
-        last = ______
-        if ______:
+    current_digit = 0
+    count = 0
+    while disk > 0:
+        last = disk % 10
+        if last == current_digit:
             count += 1
         else:
-            count = ______
-            ______
-        if ______:
-            ______
-        disk = ______
-    return ______
+            count = 1
+            current_digit = last
+        if count == current_digit:
+            return True
+        disk = disk // 10
+    return False
 
 # ORIGINAL SKELETON FOLLOWS
 
