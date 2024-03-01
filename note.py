@@ -1207,7 +1207,64 @@ print(next(t))
 print(next(t))
 print(t)
 
+Generator:
+
 A yield from statement yields all values from an iterator or iterable
+
+Calling the iter function on an iterable will create an iterator over that iterable. Each
+iterator keeps track of its position within the iterable. Calling the next function
+on an iterator will give the current value in the iterable and move the iterator’s
+position to the next value.
+
+The relationship between an iterable and an iterator is analogous to the
+relationship between a book and a bookmark - an iterable contains the data that is
+being iterated over, and an iterator keeps track of your position within that data.
+
+Once an iterator has returned all the values in an iterable, subsequent calls to next
+on that iterable will result in a StopIteration exception.
+
+This only works because the for loop implicitly creates an iterator using the builtin iter function.
+
+A generator function is a special kind of Python function that uses a yield
+statement instead of a return statement to report values.
+
+When a generator
+function is called, it returns a generator object, which is a type of iterator.
+
+The yield statement is similar to a return statement.
+
+ However, while a return
+statement closes the current frame after the function exits, a yield statement causes
+the frame to be saved until the next time next is called, which allows the generator
+to automatically keep track of the iteration state.
+
+Including a yield statement in a function automatically tells Python that this
+function will create a generator.When we call the function, it returns a generator
+object instead of executing the body. When the generator’s next method is called,
+the body is executed until the next yield statement is executed.
+
+ Inheritance
+
+Notice that because dogs and cats share a lot of similar qualities, there is a lot of
+repeated code! To avoid redefining attributes and methods for similar classes, we
+can write a single superclass from which the similar classes inherit. For example,
+we can write a class called Pet and redefine Dog as a subclass of Pet:
+class Pet():
+    def __init__(self, name, owner):
+    self.is_alive = True # It's alive!!!
+    self.name = name
+    self.owner = owner
+def eat(self, thing):
+    print(self.name + " ate a " + str(thing) + "!")
+    def talk(self):
+    print(self.name)
+class Dog(Pet):
+    def talk(self):
+    print(self.name + ' says woof!')
+
+Inheritance is best for representing is-a relationships
+
+Composition is best for representing has-a relationships
 
 """
 
